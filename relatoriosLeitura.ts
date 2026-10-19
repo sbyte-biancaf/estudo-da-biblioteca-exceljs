@@ -12,8 +12,8 @@ const colaboradores = [
 
 const horasLancadas = [
   { colaborador: "Bianca Franzon", dia: 1,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
-  { colaborador: "Bianca Franzon", dia: 2,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 31"},
-  { colaborador: "Bianca Franzon", dia: 3,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
+  { colaborador: "Bianca Franzon", dia: 2,entrada: "", saidaAlmoco: "", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 31"},
+  { colaborador: "Bianca Franzon", dia: 3,entrada: "", saidaAlmoco: "", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
   { colaborador: "Bianca Franzon", dia: 4,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 31"},
   { colaborador: "Bianca Franzon", dia: 7,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 43211"},
   { colaborador: "Bianca Franzon", dia: 8,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
@@ -128,10 +128,10 @@ async function gerarRelatorioHardcoded() {
         const rowIdx = 7 + ponto.dia;
         const row = wsPonto!.getRow(rowIdx);
 
-        if (ponto.entrada) row.getCell("C").value = ponto.entrada;
-        if (ponto.saidaAlmoco) row.getCell("D").value = ponto.saidaAlmoco;
-        if (ponto.retornoAlmoco) row.getCell("E").value = ponto.retornoAlmoco;
-        if (ponto.saida) row.getCell("F").value = ponto.saida;
+        row.getCell("C").value = ponto.entrada || "00:00";
+        row.getCell("D").value = ponto.saidaAlmoco || "00:00";
+        row.getCell("E").value = ponto.retornoAlmoco || "00:00";
+        row.getCell("F").value = ponto.saida || "00:00";
         if (ponto.observacoes) row.getCell("H").value = ponto.observacoes;
       })
     }
