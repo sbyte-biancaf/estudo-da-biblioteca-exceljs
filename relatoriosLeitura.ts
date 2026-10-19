@@ -5,12 +5,23 @@ const mesAtual = 5
 
 const colaboradores = [
     { nome: "Lucas Moraes", cargo: "Desenvolvedor", senioridade: "SENIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 130 },
-    { nome: "Bianca Franzon", cargo: "Desenvolvedora", senioridade: "JUNIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 130 },
-    { nome: "João Teste 3", cargo: "Desenvolvedor", senioridade: "SENIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 130 }
+    { nome: "Bianca Franzon", cargo: "Desenvolvedora", senioridade: "JUNIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 100 },
+    { nome: "Guilherme Fagundes", cargo: "Desenvolvedor", senioridade: "SENIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 110 },
+    { nome: "Joszef Barrionuevo", cargo: "Desenvolvedor", senioridade: "SENIOR", fornecedor: "SINOSBYTE", squad: "SUSTENTAÇÃO", lider: "Luciano Muller", alocacao: 1, valorHora: 140 }
   ];
 
 const horasLancadas = [
   { colaborador: "Bianca Franzon", dia: 1,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
+  { colaborador: "Bianca Franzon", dia: 2,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 31"},
+  { colaborador: "Bianca Franzon", dia: 3,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
+  { colaborador: "Bianca Franzon", dia: 4,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 31"},
+  { colaborador: "Bianca Franzon", dia: 7,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 43211"},
+  { colaborador: "Bianca Franzon", dia: 8,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 1"},
+  { colaborador: "Bianca Franzon", dia: 9,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 51"},
+  { colaborador: "Bianca Franzon", dia: 10,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 361"},
+  { colaborador: "Bianca Franzon", dia: 11,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 21"},
+  { colaborador: "Bianca Franzon", dia: 14,entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 41"},
+  { colaborador: "Bianca Franzon", dia: 15,entrada: "09:00", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:00", observacoes: "Teste 221"},
   { colaborador: "Lucas Moraes",dia: 4, entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:30", observacoes: "Teste 2"},
   { colaborador: "Bianca Franzon", dia: 1, entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:30", observacoes: "Teste 2"},
   { colaborador: "Lucas Moraes",dia: 2, entrada: "09:30", saidaAlmoco: "12:00", retornoAlmoco: "13:00", saida: "18:30", observacoes: "Teste 2"},
@@ -101,13 +112,15 @@ async function gerarRelatorioHardcoded() {
     if (wsPonto) {
       wsPonto.mergeCells("A1:H1");
       wsPonto.mergeCells("A2:H2");
-      
+
       wsPonto.getCell("A1").value = { formula: `"REGISTRO DE PONTO — ${c.nome} — SINOSBYTE — " & Consolidado!$H$4 & "/" & Consolidado!$E$4` };
 
       wsPonto.getCell("B4").value = c.nome;
       wsPonto.getCell("E4").value = c.cargo;
       wsPonto.getCell("H4").value = "SINOSBYTE";
       wsPonto.getCell("B5").value = c.squad;
+      wsPonto.getCell("E5").value = c.valorHora;
+
 
       const horasDoColaborador = horasLancadas.filter(h => h.colaborador === c.nome);
 
