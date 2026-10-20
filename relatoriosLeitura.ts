@@ -77,8 +77,12 @@ async function gerarRelatorioHardcoded() {
 
     const totalRowIndex = 9 + colaboradores.length;
     const linhaTotal = wsConsolidado.getRow(totalRowIndex);
+
     linhaTotal.getCell("H").value = "TOTAL GERAL";
     linhaTotal.getCell("J").value = { formula: `SUM(J9:J${totalRowIndex - 1})` };
+    
+    linhaTotal.getCell("J").numFmt = '"R$ "#,##0.00';
+    
     linhaTotal.font = { bold: true };
   }
 
